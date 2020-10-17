@@ -5,20 +5,24 @@ const jwt = require('jsonwebtoken')
 const Joi = require('@hapi/joi')
 
 module.exports.userRegister = async (req, res)=>{
-   
+
+    
        if (!req.body.email) return  res.status(400).send('Email manquant')
 
     // Joi validation
     let schema =  Joi.object({
-        name: Joi.string().required().min(3),
-        firstname: Joi.string().required(),
+       // name: Joi.string().required().min(3),
+       // firstname: Joi.string().required(),
         email: Joi.string().email().required(),
         password: Joi.string().required().pattern(new RegExp('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$')), // 1 majuscule, 1 minuscule, 1 chiffre, 8 caracteres mini
-        role: Joi.string().required().valid('player','controller','moderator','admin'),
+        role: Joi.string().valid('player','controller','moderator','admin'),
         createdAt: Joi.date()
     })
-
-    let valid = schema.validate(req.body)
+    let data = {
+        email: req.body.email ,
+        password: req.body.password
+    }
+    let valid = schema.validate(data)
 
    //let valid = await registerValidator(req.body)
    if (valid.error) return res.status(400).send(`${valid.error.details[0].message}`)
@@ -33,11 +37,11 @@ module.exports.userRegister = async (req, res)=>{
 
  
     let user = new User ({
-        name: req.body.name ,
+       // name: req.body.name ,
         email: req.body.email,
         password: hashedPassword,
-        role: req.body.role,
-        firstname: req.body.firstname
+        role: 'player'
+      //  firstname: req.body.firstname
     })
 
     try {
