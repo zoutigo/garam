@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar, Nav , Link, Form, FormControl, Button, NavDropdown, NavItem} from 'react-bootstrap'
+import {Navbar, Nav } from 'react-bootstrap'
 import {useSelector} from 'react-redux'
 import HeadMember from './HeadMember'
 import HeadVisitor from './HeadVisitor'

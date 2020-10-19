@@ -20,6 +20,6 @@ router.put('/modify/:id', userModify)
 router.get('/view/:id',userView )
 
 // User Login
-router.get('/login', userLogin)
+router.post('/login', userLogin)
 
 module.exports = router;

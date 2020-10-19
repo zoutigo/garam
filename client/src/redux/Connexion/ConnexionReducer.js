@@ -1,7 +1,7 @@
 import {IS_CONNECTED, SHOW_REGISTER_MODAL, SHOW_LOGIN_MODAL, SUBMIT_REGISTER_FORM} from './ConnexionTypes'
 
 const initialState = {
-    connected: true,
+    connected: false,
     loginModal: false,
     registerModal: false,
     registeredDatas : {

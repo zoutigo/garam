@@ -40,7 +40,7 @@ function RegisterModal(props) {
                     onSubmit={(values, {setSubmitting, resetForm}) => {
                         // When button submit form and form is i the procss of submiting, submit button is disabled
                         // setSubmitting(true);
-                        console.log(JSON.stringify(values))
+                      
 
                         // send to back-end
                         let axiosConfig = {
@@ -54,15 +54,7 @@ function RegisterModal(props) {
                             setSubmitting(false);
                             dispatch(showRegisterModal())
                             dispatch(isConnected())
-                           // resetForm()
-
-                            // setTimeout(() => {
-                            //     console.log(res.user)
-                            //     resetForm()
-                            //     setSubmitting(false)
-                            // }, 500);
-
-
+                           
                         })
                         .catch((err) => {
                             console.log(err)
