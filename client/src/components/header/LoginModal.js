@@ -126,7 +126,7 @@ function LoginModal() {
                                 </Form.Text>
 
                                 <Form.Text className="text-muted">
-                                {serverError[0]}
+                                { serverError[0] }
                                 </Form.Text>
                                
                             </Form.Group>
