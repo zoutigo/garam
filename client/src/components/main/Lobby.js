@@ -54,10 +54,10 @@ function Lobby() {
                             return(
                             <tr key={index}>
                                 <td>{item.name}</td>
-                                <td></td>
+                                <td>{item.variante.name}</td>
                                 <td>{item.format.name} </td>
                                 <td>{item.buyIn} </td>
-                                <td></td>
+                            <td>{item.currentPlayers.length}/ {item.variante.maxPlayers}</td>
                                 <td></td>
                             </tr>
                             )

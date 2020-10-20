@@ -64,7 +64,7 @@ io.on("connection", (socket) => {
     clearInterval(interval);
   }
 
-  interval = setInterval(() => getApiAndEmit(socket), 1000);
+  interval = setInterval(() => getApiAndEmit(socket), 2000);
 
   
   // socket.emit('lobbyUpdate', JSON.stringify(tables), ()=>{

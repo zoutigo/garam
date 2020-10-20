@@ -26,6 +26,10 @@ const userSchema = new Schema({
         enum: ['player', 'controller', 'moderator', 'admin'],
         required: true
     },
+    stack : {
+        type: Number,
+        default: 0
+    }
      
 })
 

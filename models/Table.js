@@ -17,17 +17,14 @@ const tableSchema = new Schema({
             {name: 'Face à Face', maxPlayers: 2 },
             {name: 'Petits Goals', maxPlayers: 3 },
             {name: 'Moyen Format', maxPlayers: 4 },
-            {name: 'Large Format', maxPlayers: 6 }
+            {name: 'Large Format', maxPlayers: 6 },
+            {name: 'Extra large Format', maxPlayers: 6 }
         ],
        
         default: {name: 'Moyen Format', maxPlayers: 4 },
         required: true
     },
-    currentPlayers : {
-        type: Number ,
-        min: 0 ,
-        default: 0
-    },
+    currentPlayers :  [{ type: Schema.Types.ObjectId, ref: 'User' }],
     buyIn : {
         type: Number ,
         enum: [25 , 50 , 100 , 200, 250, 500, 1000, 2000, 2500, 5000, 10000, 20000, 25000, 50000, 100000],
@@ -39,17 +36,19 @@ const tableSchema = new Schema({
         required : true
 
     },
-    gameType: {
-        type: Schema.Types.ObjectId
+    variante: {
+        type: Schema.Types.ObjectId, 
+        ref: 'Variante'
     },
     status : {
         type: Boolean,
         default: false
     },
-    isObsoete : {
+    isObsolete : {
         type: Boolean,
         default: false
     }
+   
 })
 
 module.exports = mongoose.model('Table', tableSchema )
