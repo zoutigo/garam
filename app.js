@@ -6,10 +6,17 @@ var logger = require('morgan');
 var mongoose = require('mongoose')
 var dotenv = require('dotenv')
 var cors = require('cors')
+var io = require('socket.io')()
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tablesRouter = require('./routes/tables')
+var simulationsRouter = require('./routes/simulations')
+
+const {updateLobby }= require('./socket');
+const { required } = require('@hapi/joi');
+
 
 dotenv.config()
 
@@ -43,7 +50,42 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tables', tablesRouter)
+app.use('/simulations', simulationsRouter)
 
+
+// socket io stuff
+io.listen(2500)
+
+let interval
+
+io.on("connection", (socket) => {
+  console.log("New client connected");
+  if (interval) {
+    clearInterval(interval);
+  }
+
+  interval = setInterval(() => getApiAndEmit(socket), 1000);
+
+  
+  // socket.emit('lobbyUpdate', JSON.stringify(tables), ()=>{
+  //   console.log(tables)
+  // }
+  // )
+
+  socket.on("disconnect", () => {
+    console.log("Client disconnected");
+    clearInterval(interval);
+  });
+});
+
+const getApiAndEmit = async socket => {
+  const response = new Date();
+  const tables = await  updateLobby()
+  //console.log(tables)
+  // Emitting a new message. Will be consumed by the client
+  socket.emit("FromAPI", response);
+  socket.emit('lobbyUpdate', tables)
+};
 
 
 // catch 404 and forward to error handler

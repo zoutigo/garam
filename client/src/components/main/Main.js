@@ -4,6 +4,7 @@ import {Tab, Tabs} from 'react-bootstrap'
 
 
 import {useState} from 'react'
+import Lobby from './Lobby'
 
 
 
@@ -49,8 +50,8 @@ function Main() {
                         <Tab eventKey="loginForm" title="LoginForm">
                            Login
                         </Tab>
-                        <Tab eventKey="textEditor" title="TextEditor">
-                           text editor
+                        <Tab eventKey="lobby" title="Lobby">
+                           <Lobby />
                         </Tab>
                     </Tabs>
             <div>

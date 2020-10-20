@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+tr:nth-child(even) {
+  background-color: #e8e8e8;
+}

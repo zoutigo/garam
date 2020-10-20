@@ -11,11 +11,16 @@ const tableSchema = new Schema({
         type: Boolean,
         default: false
     },
-    maxPlayers: {
-        type: Number ,
-        min: 0,
-        max: 6,
-        default: 0,
+    format: {
+        type: Object ,
+        enum: [
+            {name: 'Face à Face', maxPlayers: 2 },
+            {name: 'Petits Goals', maxPlayers: 3 },
+            {name: 'Moyen Format', maxPlayers: 4 },
+            {name: 'Large Format', maxPlayers: 6 }
+        ],
+       
+        default: {name: 'Moyen Format', maxPlayers: 4 },
         required: true
     },
     currentPlayers : {
