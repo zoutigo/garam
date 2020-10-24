@@ -40,3 +40,8 @@
 tr:nth-child(even) {
   background-color: #e8e8e8;
 }
+
+.border-solid {
+border: solid 1px;
+}
+

@@ -1,0 +1,110 @@
+/* No CSS *//*# sourceMappingURL=App.css.map */
+
+$background-dark: #222f3e;
+$text-light: #feca57;
+$text-dark: #202020;
+$shadow-light: 4px 4px 10px #d6d6d6;
+$yellow : #feca57;
+$chat-borders : 1px solid  #222f3e;
+$succes-color: green ;
+$white: white ;
+$font-sm : 0.9em ;
+$font-xsm: 0.7em ;
+
+.header,
+.main-content {
+  padding: 20px;
+}
+
+.header {
+  position: relative;
+  background: $background-dark;
+  color: $text-light;
+  margin-bottom: 80px;
+  width: 100%;
+  height: 100px;
+}
+
+.main-content {
+  color: $text-dark;
+  margin: auto;
+  text-align: center;
+  box-shadow: $shadow-light;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 500px;
+}
+
+%h-flex {
+    display: flex ;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+%v-flex-c-btw {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+%v-flex-c-st {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.lobby {
+    @extend %h-flex ;
+
+}
+
+.chat-box {
+    @extend %v-flex-c-btw;
+    height: 85vh;
+    width: 20vw ;
+    background-color: $yellow;
+
+    h1{
+        font-size: 2em;
+        font-weight: bold;
+        background-color: $background-dark;
+        color: white;
+        text-align: center;
+    }
+
+    .chat-messages{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-family: $text-dark;
+        overflow: auto;
+        .chat-message-box{
+             box-shadow: $shadow-light;
+             background-color: yellowgreen;
+             border: none ;
+             .chat-message-author{
+             font-size: $font-xsm;
+             }
+             .chat-message-text{
+                 font-size: $font-sm;
+                 margin: 0
+             }
+        }
+      
+    }
+
+    .chat-form {
+
+        input {
+            width : 100% ;
+            height: 3em;
+            font-size: $font-sm;
+
+        }
+        button {
+            width: 100%;
+            background-color: $succes-color;
+            height: 2.5em;     
+        }
+}
+
+}

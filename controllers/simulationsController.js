@@ -61,8 +61,7 @@ module.exports.createTables =  async (req, res) => {
     }catch(err){
        return res.status(400).send(err)
     }
-   
-        
+         
 }
 
 

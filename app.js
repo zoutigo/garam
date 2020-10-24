@@ -7,6 +7,7 @@ var mongoose = require('mongoose')
 var dotenv = require('dotenv')
 var cors = require('cors')
 var io = require('socket.io')()
+var iochatbox = io.of('/chatbox')
 
 
 var indexRouter = require('./routes/index');
@@ -54,26 +55,31 @@ app.use('/simulations', simulationsRouter)
 
 
 // socket io stuff
-io.listen(2500)
+io.listen(2600)
 
 let interval
 
 io.on("connection", (socket) => {
-  console.log("New client connected");
+  console.log("New Lobby client connected");
   if (interval) {
     clearInterval(interval);
   }
 
-  interval = setInterval(() => getApiAndEmit(socket), 2000);
+  interval = setInterval(() => getApiAndEmit(socket), 200000);
 
-  
-  // socket.emit('lobbyUpdate', JSON.stringify(tables), ()=>{
-  //   console.log(tables)
-  // }
-  // )
+  socket.on('client-message', (data, callback) => {
+    console.log(data)
+    socket.emit('message', data)
+    callback()
+  })
 
+  socket.on('join', (data, callback) => {
+   socket.emit('message',{'message': 'welcome', 'author':'paul'})
+  })
+
+ 
   socket.on("disconnect", () => {
-    console.log("Client disconnected");
+    console.log("Client Lobby disconnected");
     clearInterval(interval);
   });
 });

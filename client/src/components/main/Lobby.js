@@ -1,6 +1,7 @@
 import React, { useState, useEffect ,useRef} from "react";
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://localhost:2500";
+import Chat from './Chat'
+const ENDPOINT = "http://localhost:2600";
 
 function Lobby() {
     const [response, setResponse] = useState("")
@@ -20,6 +21,7 @@ function Lobby() {
             setUpdates(datas);
         };
         socketRef.current.on('lobbyUpdate', handleLobbyUpdate);
+        
         return () => {
             socketRef.current.off('lobbyUpdate', handleLobbyUpdate);
         }
@@ -28,8 +30,12 @@ function Lobby() {
     return (
 
 
-        <div className={`container`}>
-            {/* <div>{updates[0].name}</div> */}
+        <div className={`container d-flex`}>
+            <section className={`chat-box`}>
+                 <Chat />
+            </section>
+           
+            <section>
             <table>
                 <caption>
                     The time is : {response} 
@@ -51,14 +57,16 @@ function Lobby() {
                   
                     {
                         updates.map((item, index)=> {
+                            let stack = 0
+                            item.currentPlayers.map(player => stack += player.wallet)
                             return(
                             <tr key={index}>
                                 <td>{item.name}</td>
                                 <td>{item.variante.name}</td>
                                 <td>{item.format.name} </td>
                                 <td>{item.buyIn} </td>
-                            <td>{item.currentPlayers.length}/ {item.variante.maxPlayers}</td>
-                                <td></td>
+                            <td>{item.currentPlayers.length} / {item.variante.maxPlayers}</td>
+                                <td>{stack} </td>
                             </tr>
                             )
                         })
@@ -66,6 +74,12 @@ function Lobby() {
                                 
               </tbody>
             </table>
+            </section>
+            <section>
+
+            </section>
+           
+           
           
         </div>
     )

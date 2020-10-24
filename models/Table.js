@@ -24,7 +24,12 @@ const tableSchema = new Schema({
         default: {name: 'Moyen Format', maxPlayers: 4 },
         required: true
     },
-    currentPlayers :  [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    currentPlayers :  [
+        {
+            player: { type: Schema.Types.ObjectId, ref: 'User' },
+            wallet: {type: Number}
+        }
+    ],
     buyIn : {
         type: Number ,
         enum: [25 , 50 , 100 , 200, 250, 500, 1000, 2000, 2500, 5000, 10000, 20000, 25000, 50000, 100000],

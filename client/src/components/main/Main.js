@@ -36,7 +36,7 @@ function Main() {
 
                     <Tabs id="controlled-tab-example" activeKey={key} onSelect={(k) => setKey(k)}>
                         <Tab eventKey="home" title="Home">
-                            Home
+                        <Lobby />
                         </Tab>
                         <Tab eventKey="users" title="Users">
                             Users
@@ -51,7 +51,7 @@ function Main() {
                            Login
                         </Tab>
                         <Tab eventKey="lobby" title="Lobby">
-                           <Lobby />
+                           
                         </Tab>
                     </Tabs>
             <div>
